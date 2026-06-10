@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand palette (from brand guide) */
+  --color-primary: #122f4d; /* Rich Navy */
+  --color-primary-700: #0d2440;
+  --color-secondary: #1e6799; /* Industrial Blue */
+  --color-secondary-600: #1a5a87;
+  --color-accent: #b19f7c; /* Precision Bronze */
+  --color-accent-600: #9c8a67;
+  --color-surface: #f5efdf; /* Ivory Cream */
+  --color-canvas: #fafaf7; /* Mist White */
+  --color-line: #d1d1d1; /* Concrete Grey */
+  --color-ink: #1f2937; /* Industrial Charcoal */
+  --color-ink-soft: #4b5563;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), var(--font-inter), sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(18, 47, 77, 0.04), 0 8px 24px rgba(18, 47, 77, 0.06);
+  --shadow-lift: 0 12px 40px rgba(18, 47, 77, 0.14);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Section reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Engineered grid texture for dark sections */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(245, 239, 223, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 239, 223, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
 }

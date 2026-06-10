@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aura Air Engineering & Misting Systems — Website
 
-## Getting Started
+Marketing & lead-generation website for **Aura Air Engineering & Misting Systems**
+(a Gladson group company). Built with **Next.js 16 (App Router)**, **TypeScript**,
+**Tailwind CSS v4**, and deployed on **Vercel**.
 
-First, run the development server:
+> Tagline: _Engineering Environments. Enhancing Life._
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+| Layer      | Choice                                      |
+| ---------- | ------------------------------------------- |
+| Framework  | Next.js 16 (App Router, static prerender)   |
+| Language   | TypeScript                                  |
+| Styling    | Tailwind CSS v4 (brand palette as CSS vars) |
+| Fonts      | Montserrat (display) + Inter (body)         |
+| Icons      | lucide-react (brand logos inline SVG)       |
+| Forms      | Web3Forms (free, no backend)                |
+| Hosting    | Vercel                                      |
+
+## Brand palette
+
+Primary `#122F4D` · Secondary `#1E6799` · Accent `#B19F7C` · Surface `#F5EFDF`
+· Canvas `#FAFAF7` · Line `#D1D1D1` · Ink `#1F2937`. Defined in
+`src/app/globals.css`.
+
+## Project structure
+
+```
+src/
+  app/                 # routes (home, about, solutions, industries, careers, contact, …)
+    solutions/[slug]/  # dynamic solution detail pages (SSG)
+    sitemap.ts robots.ts
+  components/          # Navbar, Footer, Logo, forms, UI primitives
+  lib/
+    site.ts            # contacts, nav, social, form key
+    content.ts         # solutions, industries, stats, certifications
+    faqs.ts            # FAQ content per page
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To edit copy, services, or FAQs, change the files in `src/lib/` — no component edits needed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+cp .env.example .env.local   # add your Web3Forms key
+npm run dev                  # http://localhost:3000
+npm run build                # production build check
+```
 
-## Learn More
+## Contact forms
 
-To learn more about Next.js, take a look at the following resources:
+Forms post to [Web3Forms](https://web3forms.com) (free). Create an access key tied
+to `info@auraairengineering.com` and set it as `NEXT_PUBLIC_WEB3FORMS_KEY` locally
+and in Vercel → Project → Settings → Environment Variables. Until set, forms show a
+configuration notice and won't deliver.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Option A — Git (recommended):**
 
-## Deploy on Vercel
+```bash
+git remote add origin https://github.com/auraairengineering-sys/auraairengineering-website.git
+git push -u origin main
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Then import the repo at [vercel.com/new](https://vercel.com/new), add the
+`NEXT_PUBLIC_WEB3FORMS_KEY` env var, and deploy. Set the custom domain
+`auraairengineering.com` in Vercel → Domains.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Option B — Vercel CLI:**
+
+```bash
+npm i -g vercel
+vercel        # preview
+vercel --prod # production
+```
+
+## SEO
+
+- Per-page metadata + Open Graph (via the Next.js Metadata API)
+- `sitemap.xml` and `robots.txt` generated automatically
+- JSON-LD structured data: Organization, Service (per solution), FAQPage
+- Semantic headings, descriptive alt text, canonical URLs
+
+## TODO before launch
+
+- [ ] Replace the placeholder SVG logo (`src/components/Logo.tsx`) with the real brand logo
+- [ ] Add real social URLs in `src/lib/site.ts`
+- [ ] Set the Web3Forms key
+- [ ] Add real Projects/Case Studies & Insights content (currently "coming soon")
+- [ ] Integrate Zoho Commerce on the Products page
+- [ ] Legal review of Privacy & Terms pages
+- [ ] (Optional) Multilingual support — EN/AR/ES/FR was discussed in planning
