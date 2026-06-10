@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Lockfile is generated per-platform on Vercel/CI to avoid macOS cross-platform optional-dep stubs (sharp linuxmusl) that break npm install on Linux.
+package-lock.json
