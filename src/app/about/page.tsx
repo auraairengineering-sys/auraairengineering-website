@@ -12,7 +12,7 @@ import { regions } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Aura Air Engineering & Misting Systems is a globally oriented engineering organization specializing in climate control, high-pressure misting, air management and intelligent automation — at the convergence of thermodynamics, fluid mechanics and digital control engineering.",
+    "Aura Air Engineering & Misting Systems is a Globally Oriented Engineering Organization Specializing in Climate Control, High-pressure Misting, Air Management and Intelligent Automation — at the Convergence of Thermodynamics, Fluid Mechanics and Digital Control Engineering.",
   alternates: { canonical: "/about" },
 };
 
