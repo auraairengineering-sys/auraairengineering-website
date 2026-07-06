@@ -17,6 +17,7 @@ export type Solution = {
   title: string;
   short: string;
   icon: LucideIcon;
+  image: string; // hero / card photograph
   intro: string;
   overview: string;
   featured: boolean; // shown on home grid
@@ -30,6 +31,7 @@ export const solutions: Solution[] = [
     title: "Industrial Humidification Systems",
     short: "Process-grade humidity control",
     icon: Factory,
+    image: "/images/industrial-humidification.jpg",
     featured: true,
     intro:
       "Engineered humidity regulation systems designed to maintain optimal moisture equilibrium in controlled industrial environments — minimizing static generation, material degradation, and process variability.",
@@ -63,6 +65,7 @@ export const solutions: Solution[] = [
     title: "Resort & Hospitality Fogging Systems",
     short: "Luxury outdoor comfort",
     icon: Hotel,
+    image: "/images/resort-hospitality-fogging.jpg",
     featured: true,
     intro:
       "Microclimate modulation systems tailored for luxury outdoor environments — enabling perceptible temperature reduction without surface wetting or visual obstruction.",
@@ -91,6 +94,7 @@ export const solutions: Solution[] = [
     title: "Outdoor Cooling & Misting Systems",
     short: "Large-scale evaporative cooling",
     icon: Wind,
+    image: "/images/outdoor-cooling-misting.jpg",
     featured: true,
     intro:
       "Thermodynamically optimized evaporative cooling systems designed for large-scale open and semi-enclosed environments with high heat loads.",
@@ -120,6 +124,7 @@ export const solutions: Solution[] = [
     title: "Farm Climate Control Systems",
     short: "Livestock & agri microclimates",
     icon: Tractor,
+    image: "/images/farm-climate-control.jpg",
     featured: true,
     intro:
       "Integrated environmental control frameworks developed to regulate temperature, humidity, and air distribution within agricultural ecosystems.",
@@ -147,6 +152,7 @@ export const solutions: Solution[] = [
     title: "Agricultural Misting & Humidification",
     short: "Precision crop environments",
     icon: Sprout,
+    image: "/images/agricultural-misting.jpg",
     featured: true,
     intro:
       "Advanced misting architectures designed to optimize transpiration rates, soil moisture retention, and ambient humidity in precision agriculture.",
@@ -176,6 +182,7 @@ export const solutions: Solution[] = [
     title: "Dust Suppression Systems",
     short: "Airborne particulate control",
     icon: CloudFog,
+    image: "/images/dust-suppression.jpg",
     featured: true,
     intro:
       "High-pressure fogging systems engineered to capture and agglomerate airborne particulate matter through controlled droplet-particle interaction dynamics.",
@@ -205,6 +212,7 @@ export const solutions: Solution[] = [
     title: "HVAC & Building Environmental Control",
     short: "Integrated air & humidity",
     icon: Building2,
+    image: "/images/facility-banner.jpg",
     featured: false,
     intro:
       "Integrated humidity and air quality solutions for modern infrastructure and controlled environments.",
@@ -231,6 +239,7 @@ export const solutions: Solution[] = [
     title: "Industrial Automation & Control Systems",
     short: "PLC · SCADA · IIoT",
     icon: Cpu,
+    image: "/images/product-pump-unit.jpg",
     featured: false,
     intro:
       "Intelligent control architectures that convert conventional operations into fully automated, data-driven systems — spanning PLC platforms, SCADA supervisory systems, and microcontroller-based embedded solutions.",

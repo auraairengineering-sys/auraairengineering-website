@@ -5,7 +5,8 @@ export const site = {
   description:
     "Aura Air Engineering & Misting Systems delivers advanced high-pressure fogging, humidification, evaporative cooling, dust suppression and intelligent automation solutions for industrial, commercial, agricultural and hospitality environments worldwide.",
   url: "https://www.auraairengineering.com",
-  email: "info@auraairengineering.com",
+  email: "sales@auraairengineering.com",
+  altEmail: "auraairengineering@gmail.com",
   salesEmail: "sales@auraairengineering.com",
   phones: {
     india: "+91 94470 16649",

@@ -17,6 +17,19 @@ export default function ProductsPage() {
       intro="High-pressure pumps, precision nozzles, control panels, sensors and spare components — engineered for reliability and available on request."
       breadcrumbLabel="Products"
       icon={Package}
+      heroImage="/images/pump-station.jpg"
+      showcase={[
+        {
+          src: "/images/product-pump-unit.jpg",
+          caption:
+            "High-efficiency high-pressure pump unit — tri-plex plunger manifold, sealed control terminal box and anti-vibration mounting.",
+        },
+        {
+          src: "/images/pump-station.jpg",
+          caption:
+            "Multi-pump high-pressure pumping station engineered for large-area misting and humidification networks.",
+        },
+      ]}
       note="We're integrating Zoho Commerce to enable product display and online ordering. In the meantime, our team will help you specify and source the right components for your system."
       points={[
         "High-pressure pumps & pumping stations",

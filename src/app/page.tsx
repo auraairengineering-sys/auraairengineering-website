@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ShieldCheck,
@@ -48,6 +49,18 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden bg-primary text-surface">
+        <Image
+          src="/images/facility-banner.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 object-cover object-center opacity-20"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70"
+          aria-hidden
+        />
         <div className="grid-texture absolute inset-0 opacity-70" aria-hidden />
         <div
           className="absolute -right-40 top-0 h-[32rem] w-[32rem] rounded-full bg-secondary/25 blur-3xl"
@@ -187,17 +200,30 @@ export default function HomePage() {
               <Reveal key={s.slug} delay={(i % 3) * 80}>
                 <Link
                   href={`/solutions/${s.slug}`}
-                  className="group flex h-full flex-col rounded-xl border border-line/70 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:shadow-lift"
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-line/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:shadow-lift"
                 >
-                  <IconBadge icon={s.icon} />
-                  <h3 className="mt-5 font-display text-lg font-bold text-primary group-hover:text-secondary">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">{s.intro}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
-                    Learn more
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute left-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/90 text-secondary shadow-sm ring-1 ring-black/5 backdrop-blur">
+                      <s.icon className="h-5 w-5" strokeWidth={1.75} />
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-7">
+                    <h3 className="font-display text-lg font-bold text-primary group-hover:text-secondary">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">{s.intro}</p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                      Learn more
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}

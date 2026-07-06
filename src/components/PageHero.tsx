@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { Container, Eyebrow } from "./ui";
 
@@ -7,14 +8,32 @@ export function PageHero({
   title,
   intro,
   breadcrumb,
+  image,
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   breadcrumb?: { label: string; href?: string }[];
+  image?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-primary text-surface">
+      {image && (
+        <>
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 object-cover object-center opacity-25"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70"
+            aria-hidden
+          />
+        </>
+      )}
       <div className="grid-texture absolute inset-0 opacity-80" aria-hidden />
       <div
         className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-secondary/20 blur-3xl"

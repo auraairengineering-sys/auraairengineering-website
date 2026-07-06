@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, ArrowLeft } from "lucide-react";
 import { Container, SectionHeading, Button, IconBadge, Eyebrow } from "@/components/ui";
@@ -59,6 +60,7 @@ export default async function SolutionDetailPage({
         eyebrow="Solution"
         title={s.title}
         intro={s.intro}
+        image={s.image}
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Solutions", href: "/solutions" },
@@ -70,6 +72,15 @@ export default async function SolutionDetailPage({
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:items-start">
             <Reveal>
+              <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-line/60 shadow-card">
+                <Image
+                  src={s.image}
+                  alt={s.title}
+                  fill
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
               <Eyebrow>Engineering Overview</Eyebrow>
               <p className="mt-5 text-lg leading-relaxed text-ink-soft">{s.overview}</p>
 

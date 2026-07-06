@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { Logo } from "./Logo";
 import { site } from "@/lib/site";
-import { solutions } from "@/lib/content";
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -30,12 +29,22 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Solutions", href: "/solutions" },
-  { label: "Industries", href: "/industries" },
   { label: "Products", href: "/products" },
+  { label: "Industries", href: "/industries" },
   { label: "Projects & Case Studies", href: "/projects" },
   { label: "Insights", href: "/insights" },
   { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Get a Quote", href: "/contact#quote" },
+];
+
+const supportLinks = [
+  { label: "Support", href: "/contact" },
+  { label: "FAQ", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Blog & News", href: "/insights" },
+  { label: "Sitemap", href: "/sitemap.xml" },
 ];
 
 export function Footer() {
@@ -89,16 +98,16 @@ export function Footer() {
 
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-                Solutions
+                Support &amp; Information
               </h3>
               <ul className="mt-5 space-y-2.5 text-sm">
-                {solutions.slice(0, 7).map((s) => (
-                  <li key={s.slug}>
+                {supportLinks.map((l) => (
+                  <li key={l.label}>
                     <Link
-                      href={`/solutions/${s.slug}`}
+                      href={l.href}
                       className="text-surface/75 transition-colors hover:text-accent"
                     >
-                      {s.short}
+                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -121,8 +130,19 @@ export function Footer() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  <a href={`mailto:${site.email}`} className="break-all hover:text-accent">
-                    {site.email}
+                  <span className="flex flex-col">
+                    <a href={`mailto:${site.email}`} className="break-all hover:text-accent">
+                      {site.email}
+                    </a>
+                    <a href={`mailto:${site.altEmail}`} className="break-all hover:text-accent">
+                      {site.altEmail}
+                    </a>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                  <a href={`https://wa.me/${site.whatsapp}`} className="hover:text-accent">
+                    WhatsApp Chat
                   </a>
                 </li>
                 <li className="flex items-start gap-2.5">

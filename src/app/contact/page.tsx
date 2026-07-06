@@ -43,7 +43,7 @@ export default function ContactPage() {
                 title: "Email Us",
                 lines: [
                   { text: site.email, href: `mailto:${site.email}` },
-                  { text: site.salesEmail, href: `mailto:${site.salesEmail}` },
+                  { text: site.altEmail, href: `mailto:${site.altEmail}` },
                 ],
               },
               {

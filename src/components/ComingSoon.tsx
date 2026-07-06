@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container, Button } from "./ui";
 import { Reveal } from "./Reveal";
 import { PageHero } from "./PageHero";
@@ -12,6 +13,8 @@ export function ComingSoon({
   points,
   breadcrumbLabel,
   note,
+  heroImage,
+  showcase,
 }: {
   eyebrow: string;
   title: string;
@@ -20,6 +23,8 @@ export function ComingSoon({
   points: string[];
   breadcrumbLabel: string;
   note?: string;
+  heroImage?: string;
+  showcase?: { src: string; caption: string }[];
 }) {
   return (
     <>
@@ -27,8 +32,35 @@ export function ComingSoon({
         eyebrow={eyebrow}
         title={title}
         intro={intro}
+        image={heroImage}
         breadcrumb={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]}
       />
+      {showcase && showcase.length > 0 && (
+        <section className="pt-20">
+          <Container>
+            <div className="grid gap-6 md:grid-cols-2">
+              {showcase.map((item, i) => (
+                <Reveal key={item.src} delay={i * 80}>
+                  <figure className="overflow-hidden rounded-2xl border border-line/70 bg-white shadow-card">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+                      <Image
+                        src={item.src}
+                        alt={item.caption}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="px-6 py-4 text-sm font-medium text-ink">
+                      {item.caption}
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
       <section className="py-20">
         <Container>
           <div className="mx-auto max-w-3xl rounded-2xl border border-line/70 bg-white p-10 text-center shadow-card sm:p-14">

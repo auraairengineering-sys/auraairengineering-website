@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { mainNav, site } from "@/lib/site";
 
@@ -39,6 +39,14 @@ export function Navbar() {
             </a>
             <a href={`tel:${site.phones.usaHref}`} className="inline-flex items-center gap-1.5 hover:text-accent">
               <Phone className="h-3 w-3" /> USA {site.phones.usa}
+            </a>
+            <a
+              href={`https://wa.me/${site.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-accent"
+            >
+              <MessageCircle className="h-3 w-3" /> WhatsApp
             </a>
           </div>
         </div>
