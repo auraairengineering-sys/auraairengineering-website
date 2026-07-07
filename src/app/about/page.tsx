@@ -30,7 +30,7 @@ export default function AboutPage() {
         eyebrow="About Aura Air"
         title="Engineering Intelligent Microclimate Solutions"
         intro={aboutContent.subhead}
-        image="/images/facility-banner.jpg"
+        image="/aura-web-pic101.png"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 
