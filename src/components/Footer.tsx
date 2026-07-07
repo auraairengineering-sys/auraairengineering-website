@@ -28,9 +28,8 @@ function YoutubeIcon({ className }: { className?: string }) {
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Solutions", href: "/solutions" },
+  { label: "Industries & Solutions", href: "/industries" },
   { label: "Products", href: "/products" },
-  { label: "Industries", href: "/industries" },
   { label: "Projects & Case Studies", href: "/projects" },
   { label: "Insights", href: "/insights" },
   { label: "Careers", href: "/careers" },

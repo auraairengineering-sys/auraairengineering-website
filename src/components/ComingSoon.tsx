@@ -82,7 +82,7 @@ export function ComingSoon({
                 <Button href="/contact#quote" variant="accent" withArrow>
                   Request Information
                 </Button>
-                <Button href="/solutions" variant="ghost" withArrow>
+                <Button href="/industries" variant="ghost" withArrow>
                   Explore Solutions
                 </Button>
               </div>

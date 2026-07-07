@@ -76,8 +76,16 @@ export function Navbar() {
                     {item.label}
                     <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                   </Link>
-                  <div className="invisible absolute left-0 top-full w-72 translate-y-1 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                    <div className="mt-1 overflow-hidden rounded-xl border border-line/70 bg-white p-2 shadow-lift">
+                  <div
+                    className={`invisible absolute left-0 top-full translate-y-1 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 ${
+                      item.children.length > 6 ? "w-[34rem]" : "w-72"
+                    }`}
+                  >
+                    <div
+                      className={`mt-1 overflow-hidden rounded-xl border border-line/70 bg-white p-2 shadow-lift ${
+                        item.children.length > 6 ? "grid grid-cols-2 gap-0.5" : ""
+                      }`}
+                    >
                       {item.children.map((child) => (
                         <Link
                           key={child.href}

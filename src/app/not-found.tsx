@@ -15,7 +15,7 @@ export default function NotFound() {
           <Button href="/" variant="accent" withArrow>
             Back to Home
           </Button>
-          <Button href="/solutions" variant="outline">
+          <Button href="/industries" variant="outline">
             Explore Solutions
           </Button>
         </div>

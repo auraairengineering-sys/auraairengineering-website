@@ -4,7 +4,7 @@ import { Container, SectionHeading, Eyebrow, Button } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
 import { FaqSection } from "@/components/FaqSection";
-import { careersFaqs } from "@/lib/faqs";
+import { careersContent } from "@/lib/pages/careers";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -199,7 +199,11 @@ export default function CareersPage() {
         </Container>
       </section>
 
-      <FaqSection items={careersFaqs} eyebrow="Careers — FAQ" title="Questions About Working Here" />
+      <FaqSection
+        items={careersContent.faqs}
+        eyebrow="Careers — FAQ"
+        title="Questions About Working Here"
+      />
     </>
   );
 }

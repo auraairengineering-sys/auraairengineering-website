@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
-import { solutions } from "@/lib/content";
+import { verticals } from "@/lib/verticals";
+import { productCategories } from "@/lib/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
   const staticRoutes = [
     "",
     "/about",
-    "/solutions",
     "/industries",
     "/products",
     "/projects",
@@ -22,11 +22,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const solutionEntries: MetadataRoute.Sitemap = solutions.map((s) => ({
-    url: `${base}/solutions/${s.slug}`,
+  const verticalEntries: MetadataRoute.Sitemap = verticals.map((v) => ({
+    url: `${base}/industries/${v.slug}`,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...solutionEntries];
+  const childEntries: MetadataRoute.Sitemap = verticals.flatMap((v) =>
+    (v.children ?? []).map((c) => ({
+      url: `${base}/industries/${v.slug}/${c.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  );
+
+  const productEntries: MetadataRoute.Sitemap = productCategories.map((c) => ({
+    url: `${base}/products/${c.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...verticalEntries, ...childEntries, ...productEntries];
 }

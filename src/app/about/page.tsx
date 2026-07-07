@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Target, Compass, Cog, Microscope, Workflow, Leaf, Users, Globe2 } from "lucide-react";
+import { Target, Globe2 } from "lucide-react";
 import { Container, SectionHeading, Eyebrow, IconBadge } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
@@ -8,82 +8,41 @@ import { FaqSection } from "@/components/FaqSection";
 import { ContactForm } from "@/components/ContactForm";
 import { aboutFaqs } from "@/lib/faqs";
 import { regions } from "@/lib/content";
+import { aboutContent } from "@/lib/pages/about";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Aura Air Engineering & Misting Systems is a Globally Oriented Engineering Organization Specializing in Climate Control, High-pressure Misting, Air Management and Intelligent Automation — at the Convergence of Thermodynamics, Fluid Mechanics and Digital Control Engineering.",
+    "Aura Air Engineering & Misting Systems engineers intelligent microclimate solutions through simulation, automation and precision misting — at the convergence of thermodynamics, fluid mechanics and digital control engineering.",
   alternates: { canonical: "/about" },
 };
 
-const philosophy = [
-  {
-    icon: Compass,
-    title: "Core Engineering Philosophy",
-    body: "Anchored in precision-driven design, computational rigor and adaptive system intelligence. Solutions are established through thermodynamic modeling, fluid dynamic analysis and control system engineering — delivering deterministic performance under variable conditions.",
-  },
-  {
-    icon: Cog,
-    title: "Advanced Technology Integration",
-    body: "High-pressure fluid systems, environmental control engineering and intelligent automation converge into a cohesive architecture enabling synchronized control of temperature, humidity, particulate concentration and air quality.",
-  },
-  {
-    icon: Workflow,
-    title: "Automation, Control & Digital Intelligence",
-    body: "Deterministic PLC control logic, intuitive HMI, supervisory SCADA and IIoT data acquisition transform conventional systems into autonomous, self-regulating infrastructures with predictive maintenance and anomaly detection.",
-  },
-  {
-    icon: Microscope,
-    title: "Research, Development & Innovation",
-    body: "A continuous, data-driven process grounded in experimental validation and computational modeling — refining nozzle geometries, pressure regimes and flow characteristics to maximize evaporative efficiency.",
-  },
-  {
-    icon: Leaf,
-    title: "Sustainability & Efficiency",
-    body: "Sustainability is a core engineering parameter — reducing energy intensity, optimizing water utilization and enhancing air quality through thermodynamic efficiency modeling and intelligent control.",
-  },
-  {
-    icon: Users,
-    title: "Client-Centric Approach",
-    body: "Transparent technical communication, detailed requirement analysis and customized system configurations — delivered as collaborative engineering partnerships with continuous optimization.",
-  },
-];
+// Long-form sections rendered inline; vision/mission and global capability get
+// their own dedicated treatments below, so they're excluded from the article body.
+const articleSections = aboutContent.sections.filter(
+  (s) => !/vision and mission|global engineering capability/i.test(s.heading),
+);
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
         eyebrow="About Aura Air"
-        title="Engineering Advanced Microclimate Solutions for a Demanding World"
-        intro="A globally oriented engineering organization specializing in advanced climate control, high-pressure misting, air management and intelligent automation systems."
+        title="Engineering Intelligent Microclimate Solutions"
+        intro={aboutContent.subhead}
+        image="/images/facility-banner.jpg"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 
-      {/* Intro narrative */}
+      {/* Intro narrative + vision/mission */}
       <section className="py-20">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
             <Reveal>
               <div className="space-y-5 text-base leading-relaxed text-ink-soft">
-                <p>
-                  Aura Air Engineering &amp; Misting Systems operates at the convergence of
-                  thermodynamics, fluid mechanics, and digital control engineering, delivering
-                  high-performance environmental solutions designed to optimize temperature,
-                  humidity, and air quality across diverse industrial and commercial applications.
-                </p>
-                <p>
-                  With over a decade of applied engineering expertise, we design and deploy systems
-                  that perform reliably under complex and variable conditions. Our solutions are not
-                  merely functional installations — they are engineered ecosystems developed to
-                  enhance process stability, protect material integrity, improve human comfort, and
-                  ensure regulatory compliance.
-                </p>
-                <p>
-                  Reliability and technical integrity are embedded within every stage of our
-                  engineering and execution processes. Each system is designed through rigorous
-                  validation protocols, using high-quality components and proven engineering
-                  standards to ensure long-term operational stability and minimal downtime.
-                </p>
+                {aboutContent.intro.slice(0, 4).map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
             </Reveal>
             <Reveal delay={120}>
@@ -117,23 +76,38 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Philosophy grid */}
+      {/* Long-form engineering narrative */}
       <section className="bg-surface/60 py-20">
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="How We Engineer"
               title="A Multidisciplinary Engineering Framework"
-              intro="Every deployment is built on first-principles engineering — not empirical approximation."
+              intro="Every deployment is built on first-principles engineering — thermodynamics, fluid mechanics, environmental modelling and intelligent automation, working as one system."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {philosophy.map((p, i) => (
-              <Reveal key={p.title} delay={(i % 3) * 80}>
-                <div className="h-full rounded-xl border border-line/70 bg-white p-7 shadow-card">
-                  <IconBadge icon={p.icon} />
-                  <h3 className="mt-5 font-display text-lg font-bold text-primary">{p.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">{p.body}</p>
+          <div className="mx-auto mt-12 max-w-4xl">
+            {articleSections.map((s, i) => (
+              <Reveal key={i}>
+                <div className={i === 0 ? "" : "mt-12"}>
+                  <h2 className="font-display text-xl font-bold text-primary sm:text-2xl">
+                    {s.heading}
+                  </h2>
+                  <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-soft sm:text-base">
+                    {s.body.map((p, j) => (
+                      <p key={j}>{p}</p>
+                    ))}
+                  </div>
+                  {s.bullets && (
+                    <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+                      {s.bullets.map((b, k) => (
+                        <li key={k} className="flex items-start gap-2.5 text-sm text-ink">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </Reveal>
             ))}

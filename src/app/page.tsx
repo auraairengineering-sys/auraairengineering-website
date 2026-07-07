@@ -15,7 +15,8 @@ import { Container, SectionHeading, Button, Eyebrow, IconBadge } from "@/compone
 import { Reveal } from "@/components/Reveal";
 import { CtaSection } from "@/components/CtaSection";
 import { FaqSection } from "@/components/FaqSection";
-import { featuredSolutions, stats, valueProps, certifications } from "@/lib/content";
+import { stats, valueProps, certifications } from "@/lib/content";
+import { coreVerticals } from "@/lib/verticals";
 import { homeFaqs } from "@/lib/faqs";
 import { site } from "@/lib/site";
 
@@ -91,7 +92,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={240}>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                <Button href="/solutions" variant="accent" withArrow>
+                <Button href="/industries" variant="accent" withArrow>
                   Explore Solutions
                 </Button>
                 <Button href="/contact#quote" variant="outline">
@@ -162,7 +163,7 @@ export default function HomePage() {
                 <Button href="/about" withArrow>
                   About Aura Air
                 </Button>
-                <Button href="/solutions/industrial-automation" variant="ghost" withArrow>
+                <Button href="/industries/industrial-automation" variant="ghost" withArrow>
                   Our Automation Capability
                 </Button>
               </div>
@@ -196,29 +197,31 @@ export default function HomePage() {
             />
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuredSolutions.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 3) * 80}>
+            {coreVerticals.map((v, i) => (
+              <Reveal key={v.slug} delay={(i % 3) * 80}>
                 <Link
-                  href={`/solutions/${s.slug}`}
+                  href={`/industries/${v.slug}`}
                   className="group flex h-full flex-col overflow-hidden rounded-xl border border-line/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:shadow-lift"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative aspect-[16/10] overflow-hidden bg-primary/5">
+                    {v.image && (
+                      <Image
+                        src={v.image}
+                        alt={v.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
                     <span className="absolute left-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/90 text-secondary shadow-sm ring-1 ring-black/5 backdrop-blur">
-                      <s.icon className="h-5 w-5" strokeWidth={1.75} />
+                      <v.icon className="h-5 w-5" strokeWidth={1.75} />
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-7">
                     <h3 className="font-display text-lg font-bold text-primary group-hover:text-secondary">
-                      {s.title}
+                      {v.title}
                     </h3>
-                    <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">{s.intro}</p>
+                    <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">{v.short}</p>
                     <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
                       Learn more
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -229,8 +232,8 @@ export default function HomePage() {
             ))}
           </div>
           <Reveal className="mt-10 text-center">
-            <Button href="/solutions" variant="ghost" withArrow>
-              View all solutions
+            <Button href="/industries" variant="ghost" withArrow>
+              View all industries &amp; solutions
             </Button>
           </Reveal>
         </Container>

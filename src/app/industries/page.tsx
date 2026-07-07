@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { Container, SectionHeading, IconBadge } from "@/components/ui";
+import { Container, SectionHeading } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
 import { CtaSection } from "@/components/CtaSection";
 import { FaqSection } from "@/components/FaqSection";
-import { solutions } from "@/lib/content";
+import { verticals } from "@/lib/verticals";
 import { industriesFaqs } from "@/lib/faqs";
 
 export const metadata: Metadata = {
-  title: "Industries",
+  title: "Industries & Solutions",
   description:
-    "Highly specialized environmental control solutions tailored to industrial, commercial and agricultural sectors — from textile and pharma to mining, hospitality, data centers and precision agriculture.",
+    "Engineered environmental control across industry: industrial humidification, resort & hospitality fogging, outdoor cooling, farm climate control, agricultural misting, dust suppression, HVAC, automation, AC-condenser fogging and H-plant humidity systems.",
   alternates: { canonical: "/industries" },
 };
 
@@ -20,85 +21,57 @@ export default function IndustriesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Industries"
-        title="Engineered Environmental Solutions Across Diverse Industries"
-        intro="Our systems are not generic installations — they are precision-engineered from a deep technical understanding of process requirements, climatic variables and application-specific performance parameters."
+        eyebrow="Industries & Solutions"
+        title="Engineered Environmental Control Across Every Industry"
+        intro="Our systems are not generic installations — each is precision-engineered from a deep technical understanding of process requirements, climatic variables and application-specific performance parameters."
+        image="/images/facility-banner.jpg"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Industries" }]}
       />
 
       <section className="py-20">
         <Container>
           <Reveal>
-            <div className="mx-auto max-w-3xl space-y-5 text-center text-base leading-relaxed text-ink-soft">
-              <p>
-                Humidity, temperature, and airborne particulate control directly influence product
-                quality, operational efficiency, equipment longevity, and workforce productivity.
-                Whether maintaining fiber flexibility in textile processing, controlling static in
-                electronics manufacturing, optimizing crop yield, or ensuring thermal comfort in
-                high-temperature outdoor environments — each application demands a carefully
-                calibrated solution.
-              </p>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Per-vertical industry lists */}
-      <section className="bg-surface/60 py-20">
-        <Container>
-          <div className="space-y-10">
-            {solutions
-              .filter((s) => s.industries.length > 4)
-              .map((s, i) => (
-                <Reveal key={s.slug} delay={(i % 2) * 60}>
-                  <div className="rounded-2xl border border-line/70 bg-white p-8 shadow-card">
-                    <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-                      <div className="lg:w-72 lg:shrink-0">
-                        <IconBadge icon={s.icon} />
-                        <h2 className="mt-4 font-display text-xl font-bold text-primary">
-                          {s.title}
-                        </h2>
-                        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.intro}</p>
-                        <Link
-                          href={`/solutions/${s.slug}`}
-                          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary"
-                        >
-                          View solution
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </div>
-                      <ul className="grid flex-1 gap-2.5 sm:grid-cols-2">
-                        {s.industries.map((ind) => (
-                          <li
-                            key={ind}
-                            className="flex items-start gap-2.5 text-sm text-ink"
-                          >
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                            {ind}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Positioning band */}
-      <section className="relative overflow-hidden bg-primary py-20 text-surface">
-        <div className="grid-texture absolute inset-0 opacity-60" aria-hidden />
-        <Container className="relative">
-          <Reveal className="mx-auto max-w-3xl text-center">
             <SectionHeading
-              light
-              align="center"
-              eyebrow="Performance-Critical Industries"
-              title="Global-Standard Solutions Where Environment Is a Decisive Factor"
-              intro="From high-precision manufacturing facilities and large-scale infrastructure to premium hospitality environments — we deliver scalable, energy-efficient systems aligned with international performance expectations."
+              eyebrow="Solution Verticals"
+              title="Ten Engineering Domains, One Standard of Precision"
+              intro="From heavy industry and infrastructure to hospitality, agriculture and building services — explore the engineered systems built around your process, climate and compliance requirements."
             />
           </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {verticals.map((v, i) => (
+              <Reveal key={v.slug} delay={(i % 3) * 70}>
+                <Link
+                  href={`/industries/${v.slug}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-line/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:shadow-lift"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-primary/5">
+                    {v.image && (
+                      <Image
+                        src={v.image}
+                        alt={v.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+                    <span className="absolute left-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/90 text-secondary shadow-sm ring-1 ring-black/5 backdrop-blur">
+                      <v.icon className="h-5 w-5" strokeWidth={1.75} />
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h2 className="font-display text-lg font-bold text-primary group-hover:text-secondary">
+                      {v.title}
+                    </h2>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">{v.short}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary">
+                      Explore
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 
